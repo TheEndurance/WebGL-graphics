@@ -29,8 +29,6 @@ window.onload = function () {
     }
 
     document.addEventListener('keypress', (evt) => {
-        console.log(evt.keyCode);
-        console.log("fire");
         if (evt.keyCode === 119) {
             velocity += 0.01;
         } else if (evt.keyCode === 115) {
