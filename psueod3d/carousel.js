@@ -5,15 +5,19 @@ window.onload = function () {
         height = canvas.height = window.innerHeight;
 
     let fl = 300;
-    let alphabet = 'abcdefghijklmnopqrstuvwxyz'.toLocaleUpperCase().split('');
+    let alphabet = ' eip maerc'.toLocaleUpperCase().split('');
     let shapes = [];
-    for (let i = 0; i < 25; i++) {
-        shapes.push({
-            x: (Math.round(Math.random()) * 2 - 1) * Math.random() * 550,
-            y: (Math.round(Math.random()) * 2 - 1) * Math.random() * 350,
-            z: Math.random() * 900,
+    let centerZ = 1000;
+    let radius = 1000;
+    for (let i = 0; i < 10; i++) {
+        let shape = {
+            y: 0,
+            angle: Math.PI * 2 / 10 * i,
             letter: alphabet[i]
-        })
+        };
+        shape.x = Math.cos(shape.angle) * radius;
+        shape.z = centerZ + Math.sin(shape.angle) * radius;
+        shapes.push(shape)
     }
     context.translate(width / 2, height / 2);
 
@@ -28,23 +32,10 @@ window.onload = function () {
             context.font="90px Georgia";
             context.fillText(shapes[i].letter,0,0);
             context.restore();
-            shapes[i].z -= 5;
-            if (shapes[i].z < -200) {
-                shapes[i].z = 1000;
-            }
+            shapes[i].angle += Math.PI/200;
+            shapes[i].x = Math.cos(shapes[i].angle) * radius;
+            shapes[i].z = centerZ + Math.sin(shapes[i].angle) * radius;
         }
         requestAnimationFrame(render);
     }
-    document.body.addEventListener("keypress", (evt) => {
-        for (let i = 0; i < shapes.length; i++) {
-            switch (evt.keyCode) {
-                case 65:
-                    shapes[i].y += 25;
-                    break;
-                case 66:
-                    shapes[i].y -= 25;
-                    break;
-            }
-        }
-    })
 }
