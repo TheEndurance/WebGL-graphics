@@ -8,14 +8,15 @@ window.onload = function () {
     let alphabet = ' eip maerc'.toLocaleUpperCase().split('');
     let shapes = [];
     let centerZ = 1000;
+    let centerY = 650;
     let radius = 1000;
     for (let i = 0; i < 10; i++) {
         let shape = {
-            y: 0,
             angle: Math.PI * 2 / 10 * i,
             letter: alphabet[i]
         };
-        shape.x = Math.cos(shape.angle) * radius;
+        shape.y = centerY + Math.sin(shape.angle) * radius;
+        shape.x = 0;
         shape.z = centerZ + Math.sin(shape.angle) * radius;
         shapes.push(shape)
     }
@@ -34,6 +35,7 @@ window.onload = function () {
             context.restore();
             shapes[i].angle += Math.PI/200;
             shapes[i].x = Math.cos(shapes[i].angle) * radius;
+            shapes[i].y = centerY + Math.sin(shapes[i].angle) * radius;
             shapes[i].z = centerZ + Math.sin(shapes[i].angle) * radius;
         }
         requestAnimationFrame(render);
