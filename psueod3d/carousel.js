@@ -5,14 +5,14 @@ window.onload = function () {
         height = canvas.height = window.innerHeight;
 
     let fl = 300;
-    let alphabet = ' eip maerc'.toLocaleUpperCase().split('');
+    let alphabet = 'abqkwejqmsnqpwoeipoqemqj'.toLocaleUpperCase().split('');
     let shapes = [];
     let centerZ = 1000;
     let centerY = 650;
     let radius = 1000;
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < alphabet.length; i++) {
         let shape = {
-            angle: Math.PI * 2 / 10 * i,
+            angle: Math.PI * 2 / alphabet.length * i,
             letter: alphabet[i]
         };
         shape.y = centerY + Math.sin(shape.angle) * radius;
